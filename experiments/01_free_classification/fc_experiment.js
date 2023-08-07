@@ -471,7 +471,7 @@ const thankyou = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `
             <p>感谢您完成实验！</p>
-            <p>我们将尽快与您联系以安排补偿金。</p>
+            <p></p>
             <p>请点击“完成”按钮提交您的回答并完成研究。</p>
       `,
   choices: ["完成"],
