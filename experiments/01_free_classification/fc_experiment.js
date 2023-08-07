@@ -471,8 +471,8 @@ const thankyou = {
   type: jsPsychHtmlButtonResponse,
   stimulus: `
             <p>感谢您完成实验！</p>
-            <p></p>
             <p>请点击“完成”按钮提交您的回答并完成研究。</p>
+            <p>请您等到看见接下来绿色勾号屏幕再把这一页关闭了。看到绿色勾号代表数据已被收集。</p>
       `,
   choices: ["完成"],
 };
