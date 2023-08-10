@@ -234,7 +234,7 @@ const survey_family = {
 
       {
         type: 'text',
-        prompt: "您现在在中国住哪里？（比如，国家、省、县、城市、等等）",
+        prompt: "你/你家人现在在中国住哪里？（比如，国家、省、县、城市、等等）",
         name: 'now_live',
         input_type: "text",
         required: true,
