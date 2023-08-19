@@ -82,75 +82,75 @@ const instructions = {
 };
 timeline.push(instructions);
 
-const map = {
+// const map = {
 
-  type: jsPsychSketchpad,
-  prompt: '<p style="width:380px">您知道有哪些方言，请在地图上标明他们的位置及方言名称（您先画完区域以后再按“全画完了”，就可以列出您所画的方言名称了）。您所画的区域可以数量不限，大小不限，可以重叠。</p>',
-  prompt_location: 'abovecanvas',
-  stroke_color_palette: ['red'],
-  stroke_color: 'red',
-  background_image: 'china_blankmap.jpeg',
-  canvas_width: 750,
-  canvas_height: 550,
-  show_finished_button: true,
-  finished_button_label: '全画完了',
-  show_clear_button: true,
-  clear_button_label: '清除',
-  show_undo_button: true,
-  undo_button_label: '撤消',
-  show_redo_button: true,
-  redo_button_label: '重做',
-  // choices: ['d'],
-  save_final_image: true,
-  on_finish: function(data) {
-    console.log(data)
+//   type: jsPsychSketchpad,
+//   prompt: '<p style="width:380px">您知道有哪些方言，请在地图上标明他们的位置及方言名称（您先画完区域以后再按“全画完了”，就可以列出您所画的方言名称了）。您所画的区域可以数量不限，大小不限，可以重叠。</p>',
+//   prompt_location: 'abovecanvas',
+//   stroke_color_palette: ['red'],
+//   stroke_color: 'red',
+//   background_image: 'china_blankmap.jpeg',
+//   canvas_width: 750,
+//   canvas_height: 550,
+//   show_finished_button: true,
+//   finished_button_label: '全画完了',
+//   show_clear_button: true,
+//   clear_button_label: '清除',
+//   show_undo_button: true,
+//   undo_button_label: '撤消',
+//   show_redo_button: true,
+//   redo_button_label: '重做',
+//   // choices: ['d'],
+//   save_final_image: true,
+//   on_finish: function(data) {
+//     console.log(data)
 
-    // 请在以下的地图上画圈，显示您认为人们说普通话方式不同的地方。
-  }
-
-
-}
-
-const label = {
-  type: jsPsychSurveyText,
-  preamble: () => {
-    var imageData = jsPsych.data.get().last(1).values()[0].png;
-    return `<img src="${imageData}"></img>`;
-  },
-  questions: [
-    {
-    prompt: '请列出您画出来所有区域的标签。',
-    required: true,
-    },
-    
-  ],
-  button_label: '继续',
-}
-
-timeline.push(map);
-timeline.push(label);
+//     // 请在以下的地图上画圈，显示您认为人们说普通话方式不同的地方。
+//   }
 
 
-
-// let sorting_stimuli =[];
-// for (var i = 1; i <= 5; i++) {
-//     sorting_stimuli.push("amanda_" + i + ".wav");
 // }
-// console.log(sorting_stimuli)
+
+// const label = {
+//   type: jsPsychSurveyText,
+//   preamble: () => {
+//     var imageData = jsPsych.data.get().last(1).values()[0].png;
+//     return `<img src="${imageData}"></img>`;
+//   },
+//   questions: [
+//     {
+//     prompt: '请列出您画出来所有区域的标签。',
+//     required: true,
+//     },
+    
+//   ],
+//   button_label: '继续',
+// }
+
+// timeline.push(map);
+// timeline.push(label);
 
 
-// const sort_trial = {
-//     type: jsPsychFreeSort,
-//     stimuli: sorting_stimuli,
-//     stim_width: 80,
-//     stim_height: 60,
-//     sort_area_width: 500,
-//     sort_area_height: 500,
-//     prompt: "<p>Click and drag the images below to sort them so that similar items are close together.</p>"
-//     //choices: ['Continue'],
-// };
 
-// timeline.push(sort_trial)
+let sorting_stimuli =[];
+for (var i = 1; i <= 5; i++) {
+    sorting_stimuli.push("amanda_" + i + ".wav");
+}
+console.log(sorting_stimuli)
+
+
+const sort_trial = {
+    type: jsPsychFreeSort,
+    stimuli: sorting_stimuli,
+    stim_width: 80,
+    stim_height: 60,
+    sort_area_width: 500,
+    sort_area_height: 500,
+    prompt: "<p>Click and drag the images below to sort them so that similar items are close together.</p>"
+    //choices: ['Continue'],
+};
+
+timeline.push(sort_trial)
 
 
 // const irb = {
@@ -163,15 +163,15 @@ timeline.push(label);
 // };
 // timeline.push(irb);
 
-// const intro_slide = {
-//     type: jsPsychHtmlKeyboardResponse,
-//     stimulus:  `Please make sure that you are completing this experiment in a quiet room.
-//     <BR><BR>This experiment should be completed on a desktop or laptop using the Google Chrome browser.
-//     <BR><BR>You should use earphones or headphones for the duration of this experiment.
-//     <BR><BR>Press the SPACE BAR to continue.`,
-//     choices: [" "],
-// };
-// timeline.push(intro_slide);
+const intro_slide = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus:  `Please make sure that you are completing this experiment in a quiet room.
+    <BR><BR>This experiment should be completed on a desktop or laptop using the Google Chrome browser.
+    <BR><BR>You should use earphones or headphones for the duration of this experiment.
+    <BR><BR>Press the SPACE BAR to continue.`,
+    choices: [" "],
+};
+timeline.push(intro_slide);
 
 // how to get things to show up in chinese
 
