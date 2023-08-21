@@ -142,10 +142,11 @@ console.log(sorting_stimuli)
 const sort_trial = {
     type: jsPsychFreeSort,
     stimuli: sorting_stimuli,
-    stim_width: 80,
-    stim_height: 60,
-    sort_area_width: 500,
-    sort_area_height: 500,
+    stim_width: 40,
+    stim_height: 40,
+    sort_area_width: 1100,
+    sort_area_height: 700,
+    sort_area_shape: "square",
     prompt: "<p>Click and drag the images below to sort them so that similar items are close together.</p>"
     //choices: ['Continue'],
 };
