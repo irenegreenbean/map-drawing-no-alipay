@@ -146,7 +146,7 @@ const sort_trial = {
     stim_height: 40,
     sort_area_width: 1100,
     sort_area_height: 700,
-    sort_area_shape: "square",
+    sort_area_shape: "square", 
     prompt: "<p>Click and drag the images below to sort them so that similar items are close together.</p>"
     //choices: ['Continue'],
 };
@@ -164,15 +164,15 @@ timeline.push(sort_trial)
 // };
 // timeline.push(irb);
 
-const intro_slide = {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus:  `Please make sure that you are completing this experiment in a quiet room.
-    <BR><BR>This experiment should be completed on a desktop or laptop using the Google Chrome browser.
-    <BR><BR>You should use earphones or headphones for the duration of this experiment.
-    <BR><BR>Press the SPACE BAR to continue.`,
-    choices: [" "],
-};
-timeline.push(intro_slide);
+// const intro_slide = {
+//     type: jsPsychHtmlKeyboardResponse,
+//     stimulus:  `Please make sure that you are completing this experiment in a quiet room.
+//     <BR><BR>This experiment should be completed on a desktop or laptop using the Google Chrome browser.
+//     <BR><BR>You should use earphones or headphones for the duration of this experiment.
+//     <BR><BR>Press the SPACE BAR to continue.`,
+//     choices: [" "],
+// };
+// timeline.push(intro_slide);
 
 // how to get things to show up in chinese
 
