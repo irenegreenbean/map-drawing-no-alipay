@@ -318,6 +318,14 @@
   overflow-y: auto;
 }
 
+.sam-play-button {
+  height: 54px;
+  width: 50px;
+  background-color: white;
+  font-family:sans-serif;
+  font-size:22px;
+}
+
 .jspsych-display-element:focus {
   outline: none;
 }

@@ -258,6 +258,15 @@ var jsPsychFreeSort = (function (jspsych) {
               stimuli = shuffle(stimuli);
           }
           let inside = [];
+          let start_event_name = "mousedown";
+          let move_event_name = "mousemove";
+          let end_event_name = "mouseup";
+          if (typeof document.ontouchend !== "undefined") {
+              // for touch devices
+              start_event_name = "touchstart";
+              move_event_name = "touchmove";
+              end_event_name = "touchend";
+          }
           for (let i = 0; i < stimuli.length; i++) {
               var coords;
               if (trial.stim_starts_inside) {
@@ -296,8 +305,9 @@ var jsPsychFreeSort = (function (jspsych) {
               //         'px;">' +
               //         "</audio>";
                   // "<audio controls src=\"" + stimuli[i] + "\" </audio>";
-
-              display_element.querySelector("#jspsych-free-sort-arena").innerHTML +=
+              let buttonNum = i + 1
+              // note to JsPsych: never use innerHtml for like anything ever
+              display_element.querySelector("#jspsych-free-sort-arena").insertAdjacentHTML("beforeend",
                 "<div " +
                 // 'src=' + (the blank image)
                     'data-src="' +
@@ -308,15 +318,57 @@ var jsPsychFreeSort = (function (jspsych) {
                     'id="jspsych-free-sort-draggable-' +
                     i +
                     '" ' +
-                    'style="position: absolute; cursor: move; width: 300' +
-                    "px; height: 54" +
+                    'style="position: absolute; cursor: move; width: '
+                    + trial.stim_width +
+                    "px; height: " +
+                    trial.stim_height +
                     "px; top:" +
                     coords.y +
                     "px; left:" +
                     coords.x +
-                    'px;"><audio controls src=' + stimuli[i] + ' </audio>' +
-                    "</div>"; // make this an <img> again, overlay the white box object 300 x 54
-
+                    'px;">' +
+                    '<button class="sam-play-button" id="playpause' +
+                    buttonNum +
+                    '" data-state="play" style="height: ' +
+                    trial.stim_height +
+                    'px; width: ' +
+                    trial.stim_width +
+                    'px;">' +
+                    + buttonNum +
+                    "</button>" +
+                    '<audio id="audio' + 
+                    buttonNum +
+                    '" src="' + 
+                    stimuli[i] + 
+                    '" </audio>' +
+                    "</div>"); // make this an <img> again, overlay the white box object 300 x 54
+              let button = display_element.querySelector("button#playpause" + buttonNum)
+              let audio = display_element.querySelector("audio#audio" + buttonNum)
+              if (audio instanceof HTMLAudioElement) {
+                button.addEventListener(start_event_name, (e => {
+                    const toggleAudio = () => {
+                        if (audio.paused || audio.ended) {
+                            audio.play()
+                            button.style.backgroundColor = "green"
+                        } else {
+                            audio.pause()
+                            button.style.backgroundColor = "white"
+                        }
+                    }
+                    button.addEventListener(end_event_name, toggleAudio)
+                    const noAudio = () => {
+                        button.removeEventListener(end_event_name, toggleAudio)
+                    }
+                    const timeoutId = setTimeout(noAudio, 200)
+                    
+                }))
+                audio.addEventListener("pause", (e => {
+                    button.style.backgroundColor = "white"
+                }))
+                audio.addEventListener("play", (e => {
+                    button.style.backgroundColor = "green"
+                }))
+              }
               init_locations.push({
                   src: stimuli[i],
                   x: coords.x,
@@ -350,15 +402,6 @@ var jsPsychFreeSort = (function (jspsych) {
               button.style.visibility = "visible";
               display_element.querySelector("#jspsych-free-sort-counter").innerHTML =
                   trial.counter_text_finished;
-          }
-          let start_event_name = "mousedown";
-          let move_event_name = "mousemove";
-          let end_event_name = "mouseup";
-          if (typeof document.ontouchend !== "undefined") {
-              // for touch devices
-              start_event_name = "touchstart";
-              move_event_name = "touchmove";
-              end_event_name = "touchend";
           }
           for (let i = 0; i < draggables.length; i++) {
               draggables[i].addEventListener(start_event_name, (event) => {
