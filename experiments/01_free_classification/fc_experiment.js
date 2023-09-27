@@ -15,7 +15,7 @@ var jsPsych = initJsPsych({
   message_progress_bar: "实验完成程度线",
   on_finish: function () {
     //jsPsych.data.displayData();
-    window.location = "https://yinlintan.github.io/singlish/procedures/thanks.html";
+    window.location = "https://irenegreenbean.github.io/map-drawing-no-alipay/experiments/01_free_classification/thanks.html";
     proliferate.submit({ "trials": jsPsych.data.get().values() });
   },
   default_iti: 250
