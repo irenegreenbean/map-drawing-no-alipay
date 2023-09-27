@@ -1,12 +1,25 @@
-const jsPsych = initJsPsych({
-    show_progress_bar: true,
-    auto_update_progress_bar: true,
-    message_progress_bar: "实验完成程度线",
-    on_finish: function (data) {
-        // jsPsych.data.displayData('csv');
-        proliferate.submit({"trials": data.values()});
-      }
-  });
+// const jsPsych = initJsPsych({
+//     show_progress_bar: true,
+//     auto_update_progress_bar: true,
+//     message_progress_bar: "实验完成程度线",
+//     on_finish: function (data) {
+//         // jsPsych.data.displayData('csv');
+//         proliferate.submit({"trials": data.values()});
+//       }
+//   });
+
+/* initialize jsPsych */
+var jsPsych = initJsPsych({
+  show_progress_bar: true,
+  auto_update_progress_bar: true,
+  message_progress_bar: "实验完成程度线",
+  on_finish: function () {
+    //jsPsych.data.displayData();
+    window.location = "https://yinlintan.github.io/singlish/procedures/thanks.html";
+    proliferate.submit({ "trials": jsPsych.data.get().values() });
+  },
+  default_iti: 250
+});
 
 let timeline = []; 
 
