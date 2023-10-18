@@ -552,7 +552,8 @@ var jsPsychFreeSort = (function (jspsych) {
               return array;
           }
           function make_arr(startValue, stopValue, cardinality) {
-              const step = (stopValue - startValue) / (cardinality - 1);
+              const step = ((stopValue - startValue) / (cardinality - 1));
+            // const step = 120;
               let arr = [];
               for (let i = 0; i < cardinality; i++) {
                   arr.push(startValue + step * i);
