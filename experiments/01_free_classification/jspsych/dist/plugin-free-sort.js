@@ -169,6 +169,7 @@ var jsPsychFreeSort = (function (jspsych) {
           if (trial.border_width == null) {
               border_width = trial.sort_area_height * 0.03;
           }
+
           let html = "<div " +
               'id="jspsych-free-sort-arena" ' +
               'class="jspsych-free-sort-arena" ' +
@@ -177,6 +178,16 @@ var jsPsychFreeSort = (function (jspsych) {
               "px; height:" +
               trial.sort_area_height +
               'px; margin: auto;"</div>';
+
+          // let html = '<meta name="viewport" content="width=device-width, initial-scale=1.0">' + "<div " +
+          //     'id="jspsych-free-sort-arena" ' +
+          //     'class="jspsych-free-sort-arena" ' +
+          //     'style="position: relative; width:' +
+          //     trial.sort_area_width +
+          //     "px; height:" +
+          //     trial.sort_area_height +
+          //     'px; margin: auto;"</div>';
+              
           // another div for border
           html +=
               "<div " +
