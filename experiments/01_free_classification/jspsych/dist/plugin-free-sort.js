@@ -419,7 +419,7 @@ var jsPsychFreeSort = (function (jspsych) {
                       pageY = event.pageY;
                   }
                   //if (typeof document.ontouchend !== "undefined") {
-                  if (event instanceof TouchEvent) {
+                  if (event instanceof PointerEvent) {
                       // for touch devices
                       event.preventDefault();
                       const touchObject = event.changedTouches[0];
