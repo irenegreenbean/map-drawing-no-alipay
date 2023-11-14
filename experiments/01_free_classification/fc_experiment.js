@@ -160,7 +160,6 @@ const sort_trial = {
     sort_area_width: 1100,
     sort_area_height: 700,
     sort_area_shape: "square", 
-    // column_spread_factor: 1,
     prompt: "<p>Click and drag the images below to sort them so that similar items are close together.</p>"
     side_width: 150,
     //choices: ['Continue'],
