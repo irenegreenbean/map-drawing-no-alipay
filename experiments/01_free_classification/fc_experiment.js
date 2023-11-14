@@ -157,7 +157,7 @@ const sort_trial = {
     stimuli: sorting_stimuli,
     stim_width: 40,
     stim_height: 40,
-    sort_area_width: 1100,
+    sort_area_width: 1000,
     sort_area_height: 700,
     sort_area_shape: "square", 
     prompt: "<p>Click and drag the images below to sort them so that similar items are close together.</p>",
