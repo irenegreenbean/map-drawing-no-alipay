@@ -143,6 +143,11 @@ var jsPsychFreeSort = (function (jspsych) {
               pretty_name: "column spread factor",
               default: 1,
           },
+          side_width: {
+            type: jspsych.ParameterType.INT,
+            pretty_name: "side width",
+            default: 200,
+          },
       },
   };
   /**
@@ -229,18 +234,21 @@ var jsPsychFreeSort = (function (jspsych) {
               // compute coords for left and right side of arena
               var r_coords = [];
               var l_coords = [];
-              for (const x of make_arr(0, trial.sort_area_width - trial.stim_width, num_rows)) {
+              const doubleStimWidth = trial.stim_width * 2
+              var left_columns = make_arr(doubleStimWidth, doubleStimWidth + trial.side_width, Math.floor((num_rows / 2)))
+              var right_columns = make_arr(trial.sort_area_width, trial.sort_area_width + trial.side_width, Math.floor((num_rows / 2)))
+              for (const x of left_columns.concat(right_columns)) {
                   for (const y of make_arr(0, trial.sort_area_height - trial.stim_height, num_rows)) {
-                      if (x > (trial.sort_area_width - trial.stim_width) * 0.5) {
+                      if (x >= trial.sort_area_width) {
                           //r_coords.push({ x:x, y:y } )
                           r_coords.push({
-                              x: x + trial.sort_area_width * (0.5 * trial.column_spread_factor),
+                              x: x,
                               y: y,
                           });
                       }
                       else {
                           l_coords.push({
-                              x: x - trial.sort_area_width * (0.5 * trial.column_spread_factor),
+                              x: -x,
                               y: y,
                           });
                           //l_coords.push({ x:x, y:y } )
@@ -253,7 +261,6 @@ var jsPsychFreeSort = (function (jspsych) {
                   l_coords = l_coords.concat(l_coords);
               }
               // reverse left coords, so that coords closest to arena is used first
-              l_coords = l_coords.reverse();
               // shuffle stimuli, so that starting positions are random
               stimuli = shuffle(stimuli);
           }
@@ -412,7 +419,7 @@ var jsPsychFreeSort = (function (jspsych) {
                       pageY = event.pageY;
                   }
                   //if (typeof document.ontouchend !== "undefined") {
-                  if (event instanceof TouchEvent) {
+                  if (event instanceof PointerEvent) {
                       // for touch devices
                       event.preventDefault();
                       const touchObject = event.changedTouches[0];
