@@ -54,7 +54,7 @@ const intro1 = {
     type: jsPsychHtmlButtonResponse,
     stimulus:  `<p>只有年满 18 岁的中国国民才能完成这项研究。</p>
             <p>请与其他中国国民分享此链接，但不要多次参与此研究。</p>
-            <p>此实验不会超过 10 分钟。</p>
+            <p>此实验不会超过 25 分钟。</p>
             <p>点击“继续”继续。</p>`,
     choices: ['继续'],
         on_start: function() {
@@ -67,7 +67,7 @@ timeline.push(intro1);
 const intro_chinese = {
     type: jsPsychHtmlButtonResponse,
     stimulus:  `请在一间安静的屋子里做这个实验。
-    <BR><BR>请用电脑来做这个实验。
+    <BR><BR>请用电脑来做这个实验。在做实验的时候，请用您的耳机。
     <BR><BR>请点击“继续”继续。`,
     choices: ['继续'],
 
@@ -84,8 +84,8 @@ timeline.push(intro_chinese);
 
 const instructions = {
     type: jsPsychHtmlButtonResponse,
-    stimulus:  `在本实验中，你将看到一张中国大陆及周边外围地区的空白地图。您将使用计算机鼠标在地图上绘制区域，这些区域显示人们说普通话不同的地方。
-    <BR><BR>绘制区域后，系统会让您标记所绘制的每个区域。
+    stimulus:  `在本实验中，您将听到不同的音频。请您把每一段音频都听一遍（至少一遍）然后将他们根据口音分组。
+    <BR><BR>分组后，系统会让您标记您所分的组。
     <BR><BR>然后，您将回答一系列有关您的语言背景的简短问题。
     <BR><BR>请点击“继续”继续。`,
     choices: ['继续'],
@@ -160,12 +160,39 @@ const sort_trial = {
     sort_area_width: 1000,
     sort_area_height: 600,
     sort_area_shape: "square", 
-    prompt: "<p>Click and drag the images below to sort them so that similar items are close together.</p>",
+    prompt: "<p>每一个方块是一段不同的音频。您可以按一下音频来播放。请您把每一段音频都听一遍（至少一遍）然后将他们根据音频的相似度分组。</p><p>分组时，您需要按下某个方块然后将它继续按下，然后您就可以把那个方块拉到中间的大长方形了。</p><p>您分组时，请把您觉得听起来一样或相似的音频都放在一起。您想把每个音频听几遍，就听几遍。</p><p>您把音频在大长方形里全部分组完会在屏幕的下部看到继续的按钮。分组后，继续按钮将显示 ’Continue‘ 这个英语字，您按就可以继续了。</p><p>屏幕上的其他英语字您不用去管。</p>",
     side_width: 150
     //choices: ['Continue'],
 };
 
-timeline.push(sort_trial)
+timeline.push(sort_trial);
+
+const label_trial = {
+  type: jsPsychSurveyText,
+  questions: [
+    {prompt: '请详细地解释一下您刚刚分组是怎么分的，比如说您是怎么决定哪些音频跟其他音频相似或不同的。如果您觉得某些组有称号，请列出来 （比如说，如果有某个组您觉得都是广东话，请这样来给您组成的组来起称号）。', rows: 5, required: true}
+  ]
+};
+
+timeline.push(label_trial);
+
+const types = {
+  type: jsPsychSurveyText,
+  questions: [
+    {prompt: '您觉得中国普通话有哪些口音种类？请列出您能想到的所有种普通话口音。', rows: 3, required: true}
+  ]
+};
+
+timeline.push(types);
+
+const metaling = {
+  type: jsPsychSurveyText,
+  questions: [
+    {prompt: '您刚刚列出的口音当中，请谈谈您对他们的感想。比如说，您觉得那些口音听起来舒适、哪些您不喜欢听？您听到不同的口音时，您会有什么样的反应？您想谈什么样的感想就谈什么样的感想。', rows: 6, required: true}
+  ]
+};
+
+timeline.push(metaling);
 
 
 // const irb = {
@@ -217,9 +244,17 @@ const survey1 = {
         type: 'drop-down',
         prompt: "您哪一年出生？",
         name: 'age',
-        options: ['2005', '2004', '2003', '2002', '2001', '2000', '1999', '1998', '1997', '1996', '1995', '1994', '1993', '1992', '1991', '1990', '1989', '1988', '1987', '1986', '1985', '1984', '1983', '1982', '1981', '1980', '1979', '1978', '1977', '1976', '1975', '1974', '1973', '1972', '1971', '1970', '1969', '1968', '1967', '1966', '1965', '1964', '1963', '1962', '1961', '1960', '1959', '1958', '1957', '1956', '1955', '1954', '1953', '1952', '1951', '1950', '1949', '1948', '1947', '1946', '1945', '1944', '1943', '1942', '1941', '1940', '1939', '1938', '1937', '1936', '1935', '1934', '1933', 'Prefer not to answer'],
+        options: ['2006', '2005', '2004', '2003', '2002', '2001', '2000', '1999', '1998', '1997', '1996', '1995', '1994', '1993', '1992', '1991', '1990', '1989', '1988', '1987', '1986', '1985', '1984', '1983', '1982', '1981', '1980', '1979', '1978', '1977', '1976', '1975', '1974', '1973', '1972', '1971', '1970', '1969', '1968', '1967', '1966', '1965', '1964', '1963', '1962', '1961', '1960', '1959', '1958', '1957', '1956', '1955', '1954', '1953', '1952', '1951', '1950', '1949', '1948', '1947', '1946', '1945', '1944', '1943', '1942', '1941', '1940', '1939', '1938', '1937', '1936', '1935', '1934', '1933', '不想回答'],
         required: true,
       },
+      {
+        type: 'multi-choice',
+        prompt: "您的最高学历是什么?",
+        name: 'education',
+        options: ['未完成小学', '小学', '初中', '高中或中专', '大专', '本科', '硕士', '博士', '不想回答'],
+        required: true,
+      },
+
       // {
       //   type: 'multi-choice',
       //   prompt: "What is your highest level of education?",
@@ -480,6 +515,69 @@ timeline.push(survey2b);
 //   button_label: '继续',
 // };
 // timeline.push(payment_3);
+
+// /* payment information */
+const payment_1 = {
+  type: jsPsychSurveyText,
+  questions: [
+    {
+      prompt: `
+            <p>接下来的几页会问您要支付宝信息，以让研究人员转您补偿金。请在以下的空处提供您的支付宝email（电子邮件）（仅做转账使用）。</p>
+            `,
+      name: 'payment_email',
+      // required: true,
+
+    }
+    // button_label: '继续',
+  ],
+    on_finish: function(data) {
+      jsPsych.setProgressBar(data.trial_index/140);
+    },
+  button_label: '继续',
+};
+timeline.push(payment_1);
+
+// /* payment information */
+const payment_2 = {
+  type: jsPsychSurveyText,
+  questions: [
+    {
+      prompt: `
+            <p>请在以下的空处提供您的支付宝上登记的收款人姓名（仅做转账使用）。</p>
+            `,
+      name: 'payment_name',
+      // required: true,
+
+    }
+    // button_label: '继续',
+  ],
+    on_finish: function(data) {
+      jsPsych.setProgressBar(data.trial_index/140);
+    },
+  button_label: '继续',
+};
+timeline.push(payment_2);
+
+// /* payment information */
+const payment_3 = {
+  type: jsPsychSurveyText,
+  questions: [
+    {
+      prompt: `
+            <p>请在以下的空处提供您的支付宝号码（仅做转账使用）。研究人员将通过此号码来给您您参加此实验的补偿金。</p>
+            `,
+      name: 'payment_number'
+
+    }
+    // button_label: '继续',
+  ],
+    on_finish: function(data) {
+      jsPsych.setProgressBar(data.trial_index/140);
+    },
+  button_label: '继续',
+};
+timeline.push(payment_3);
+
 
 // /* thank u */
 const thankyou = {
