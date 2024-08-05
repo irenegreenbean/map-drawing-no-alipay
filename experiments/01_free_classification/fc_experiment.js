@@ -9,15 +9,15 @@
 //   });
 
 
-// const jsPsych = initJsPsych({
-//     show_progress_bar: true,
-//     auto_update_progress_bar: false,
-//     message_progress_bar: "您现在可以关闭着页了。",
-//     on_finish: function (data) {
-//         // jsPsych.data.displayData('csv');
-//         proliferate.submit({"trials": data.values()});
-//       }
-//   });
+const jsPsych = initJsPsych({
+    show_progress_bar: true,
+    auto_update_progress_bar: false,
+    message_progress_bar: "您现在可以关闭着页了。",
+    on_finish: function (data) {
+        // jsPsych.data.displayData('csv');
+        proliferate.submit({"trials": data.values()});
+      }
+  });
 /* initialize jsPsych */
 var jsPsych = initJsPsych({
   show_progress_bar: true,
